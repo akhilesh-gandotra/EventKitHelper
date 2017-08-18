@@ -100,9 +100,9 @@ class EventKitHelper {
         event.endDate = convertDateFormatter(string: calenderEvent.endDate)
         event.notes = calenderEvent.description
         let calendars = appleEventStore.calendars(for: .event)
-        for abc in calendars {
-            if abc.title == calendarName {
-                event.calendar = abc
+        for calendar in calendars {
+            if calendar.title == calendarName {
+                event.calendar = calendar
             }
         }
 
@@ -147,7 +147,7 @@ class EventKitHelper {
         let newCalendar = EKCalendar(for: .event, eventStore: eventStore)
         newCalendar.title = calendarName
         let sourcesInEventStore = eventStore.sources
-        newCalendar.source = sourcesInEventStore.filter{
+        newCalendar.source = sourcesInEventStore.filter {
             (source: EKSource) -> Bool in
             source.sourceType == EKSourceType.local
             }.first!
